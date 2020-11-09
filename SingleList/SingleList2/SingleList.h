@@ -1,5 +1,5 @@
-#ifndef SINGLELIST_H
-#define SINGLELIST_H
+#ifndef SINGLELIST_H_INCLUDED
+#define SINGLELIST_H_INCLUDED
 #include "node.h"
 class SingleList
 {
@@ -8,12 +8,12 @@ class SingleList
         ~SingleList();
         void CreateList(int n);
         void ClearList();
-        void Insert(int n,int x);
-        void Delete(int n);
-        int Locatex(int x);
+        bool Insert(int n,int x);
+        bool Delete(int n);
+        bool Locatex(int x);
         void ListTraverse();
     private:
         node *L;
+        int Length;
 };
-
 #endif // SINGLELIST_H

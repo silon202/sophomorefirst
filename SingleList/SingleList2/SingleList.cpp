@@ -4,8 +4,7 @@ using namespace std;
 SingleList::SingleList()
 {
     L=new node;
-    L->data=0;
-    L->next=NULL;
+    length=0;
 }
 SingleList::~SingleList()
 {
@@ -15,11 +14,11 @@ SingleList::~SingleList()
 }
 void SingleList::CreateList(int n)
 {
+    Length=n;
     node *s;
     node *q;
     q=L;
-    q=new node;
-    cout<<"ÇëÊäÈë";
+    cout<<"input";
     for(int i=1;i<=n;i++)
     {
         s=new node;
@@ -44,38 +43,57 @@ void SingleList::ClearList()
     }
     q->next=NULL;
 }
-void SingleList::Insert(int n,int x)
+bool SingleList::Insert(int n,int x)
 {
-    node *s;
-    s=L;
-    int i=1;
-    while(i<n)
+    if(n>Length||n<1)
+        return 1;
+    else
     {
-        s=s->next;
-        i++;
+        node *s;
+        s=L;
+        int i=1;
+        while(i<n)
+        {
+            s=s->next;
+            i++;
+        }
+        node *p;
+        p=new node;
+        p->data=x;
+        p->next=s->next;
+        s->next=p;
     }
-    node *p;
-    p=new node;
-    p->data=x;
-    p->next=s->next;
-    s->next=p;
 }
-void SingleList::Delete(int n)
+bool SingleList::Delete(int n)
 {
-    node *s;
-    s=L;
-    int i=1;
-    while(i<n)
+    if(n>Length||n<1)
+        return 1;
+    else
     {
-        s=s->next;
-        i++;
+        node *s;
+        s=L;
+        int i=1;
+        while(i<n)
+        {
+            s=s->next;
+            i++;
+        }
+        node *p;
+        p=s->next;
+        if(n==Length)
+        {
+            delete p;
+            return 0;
+        }
+        else
+        {
+            s->next=p->next;
+            delete p;
+            return 0;
+        }
     }
-    node *p;
-    p=s->next;
-    s->next=p->next;
-    delete p;
 }
-int SingleList::Locatex(int x)
+bool SingleList::Locatex(int x)
 {
     int i=0;
     node *q;
@@ -84,12 +102,17 @@ int SingleList::Locatex(int x)
     while(q->next!=NULL)
     {
         if(q->data=x)
-            return i;
+            cout<<i;
+            return 0;
         else
             q=q->next;
             i++;
     }
-    return 0;
+    if(q->data==x)
+        cout<<Length;
+        return 0;
+    else
+    return 1;
 }
 void SingleList::ListTraverse()
 {
@@ -100,5 +123,6 @@ void SingleList::ListTraverse()
         q=q->next;
         cout<<q->data<<" ";
     }
+    cout<<q->data;
 }
 
