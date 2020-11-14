@@ -31,17 +31,15 @@ void SingleList::CreateList(int n)
 void SingleList::ClearList()
 {
     node* s;
-    node* q;
-    q = L;
-    s = q->next;
+    s = L->next;
     node* p;
-    while (s->next != NULL)
+    while (s != NULL)
     {
         p = s->next;
         delete s;
         s = p;
     }
-    delete s;
+    L->next= NULL;
 }
 bool SingleList::Insert(int n, int x)
 {
@@ -79,48 +77,34 @@ bool SingleList::Delete(int n)
             s = s->next;
             i++;
         }
-        node* p;
-        p = s->next;
-        if (n == Length)
-        {
-            delete p;
-            p = NULL;
-            return true;
-        }
-        else
-        {
+            node* p;
+            p = s->next;
             s->next = p->next;
             delete p;
             return true;
-        }
+        
     }
 }
-bool SingleList::Locatex(int x)
+int SingleList::Locatex(int x)
 {
     int i = 1;
     node* q;
     q = L;
     q = q->next;
-    while (q->next != NULL)
+    while (q != NULL)
     {
         if (q->data == x)
         {
             cout << i;
-            return true;
-         }
+            return i;
+        }
         else
         {
             q = q->next;
             i++;
-         }
+        }
     }
-    if (q->data == x)
-    {
-        cout << Length;
-        return true;
-    }
-    else
-        return false;
+        return -1;
 }
 void SingleList::ListTraverse()
 {

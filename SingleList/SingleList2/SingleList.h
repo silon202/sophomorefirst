@@ -11,7 +11,7 @@ public:
     void ClearList();
     bool Insert(int n, int x);
     bool Delete(int n);
-    bool Locatex(int x);
+    int Locatex(int x);
     void ListTraverse();
 private:
     node* L;

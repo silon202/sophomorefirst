@@ -9,11 +9,11 @@ int main()
     cin >> n;
     m->CreateList(n);
     m->ListTraverse();
-    m->Insert(3, 3);
+    m->Insert(2, 2);
     m->ListTraverse();
-    m->Delete(3);
+    m->Delete(2);
     m->ListTraverse();
-    m->Locatex(5);
-    m->CreateList();
+    m->Locatex(2);
+    m->ClearList();
     return 0;
 }
