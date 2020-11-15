@@ -25,8 +25,8 @@ void SingleList::CreateList(int n)
         cin >> s->data;
         q->next = s;
         q = s;
+        Length++;
     }
-    q->next = NULL;
 }
 void SingleList::ClearList()
 {
@@ -43,7 +43,7 @@ void SingleList::ClearList()
 }
 bool SingleList::Insert(int n, int x)
 {
-    if (n > Length || n < 1)
+    if (n > Length+1 || n < 1)
         return false;
     else
     {
