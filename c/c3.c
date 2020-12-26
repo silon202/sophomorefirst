@@ -124,78 +124,114 @@
 //}
 
 //œ∞Ã‚2
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include <stdbool.h>
-//int main(void)
-//{
-	//char m[100];
-	//int count = 0;
-	//int capacity = 10;
-	//char** n = calloc(capacity, sizeof(char*));
-	//char* temp = NULL;
-	//size_t len = 0;
-	//bool x=false;
-	//char* ptr;
-	//while (1>0)
-	//{
-	//	ptr=fgets(m, 100, stdin);
-	//if (!ptr)
-	//{
-	//printf("error");
-	//free(n);
-	//n=NULLL;
-	//return 1;
-	//	}
-	//	if (*ptr == '\n')
-	//		break;
-	//	if (count == capacity)
-	//	{
-	//		capacity += 10;
-	//		n = realloc(n, capacity);
-	//		if(!n)
-	//		return 3;
-	//	}
-	//	len = strnlen_s(m, 100) + 1;
-	//	n[count] = malloc(len);
-	//if (!n[count])
-	//{
-	//printf("error");
-	//return 2;
-	//	strcpy_s(n[count++], len, m);
-	//}
-	//	while (!x)
-	//	{
-	//		x = true;
-	//		for (int i = 0;i < count - 1;i++)
-	//		{
-	//			if (strlen(n[i] )> strlen(n[i + 1]))
-	//			{
-	//				x = false;
-	//				temp = n[i];
-	//				n[i] = n[i + 1];
-	//				n[i + 1] = temp;
-	//			}
-	//		}
-	//	}
-	//	for (int i = 0;i < count;i++)
-	//	{
-	//		printf("%s\n", n[i]);
-	//		free(n[i]);
-	//		n[i] = NULL;
-	//	}
-	//	free(n);
-	//	n = NULL;
-	//	return 0;
-//}
-
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <stdlib.h>
 int main(void)
 {
-	float* m[2][6] = NULL;
+	char* m = NULL;
+	int count = 0;
+	int capacity = 10;
+	char** n = calloc(capacity, sizeof(char*));
+	char* temp = NULL;
+	size_t len = 0;
+	bool x=false;
+	char* ptr;
+	while (1 > 0)
+	{
+		int len = 10;
+		int count2 = 0;
+		int c;
+		m = (char*)malloc(len);
+		while ((c = getchar()) != '\n')
+		{
+			m[count++] = c;
+			if (count >= len - 1)
+			{
+				len += 100;
+				m = (char*)realloc(m, len);
+			}
+		}
+		m[count] = 0;
+		if ((m[0] == 'e')&&(m[1]=='n')&&(m[2]=='d'))
+		{
+			free(m);
+			m = NULL;
+			break;
+		}
+		if (count == capacity)
+		{
+			capacity += 10;
+			n = realloc(n, capacity);
+			if (!n)
+				return 3;
+		}
+		len = strnlen_s(m, 100) + 1;
+		n[count] = malloc(len);
+		if (!n[count])
+		{
+			printf("error");
+			return 2;
+		}
+			strcpy_s(n[count++], len, m);
+		
+	}
+		while (!x)
+		{
+			x = true;
+			for (int i = 0;i < count - 1;i++)
+			{
+				if (strlen(n[i] )> strlen(n[i + 1]))
+				{
+					x = false;
+					temp = n[i];
+					n[i] = n[i + 1];
+					n[i + 1] = temp;
+				}
+			}
+		}
+		for (int i = 0;i < count;i++)
+		{
+			printf("%s\n", n[i]);
+			free(n[i]);
+			n[i] = NULL;
+		}
+		free(n);
+		n = NULL;
+		return 0;
 }
+
+
+//#include <stdio.h>
+//#include <string.h>
+//#include <stdbool.h>
+//#include <stdlib.h>
+//int main(void)
+//{
+	//char x[10];
+	//char *y;	
+	//y = calloc(10, sizeof(char));
+	//int capacity = 10;
+	//while(1>0)
+	//{
+	//	fgets(x, 10, stdin);
+	//	if (sizeof(y) == 0)
+	//	{
+	//		strcpy_s(y,10, x);
+	//	}
+	//	else
+	//	strcat_s(y, 10, x);
+	//	if(strlen(x)<9) //(x[8]=='\0')
+	//		break;
+	//	else
+	//	{
+	//		capacity += 10;
+	//		y = realloc(y, capacity*sizeof(char));
+	//	}
+	//}
+	//printf("%s",y);
+	//free(y);
+	//y = NULL;
+	//return 0;
+//}	
